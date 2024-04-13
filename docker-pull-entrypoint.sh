@@ -21,9 +21,7 @@ if [ -z "$INPUT_DOCKER_IMAGE" ]; then
   exit 1
 fi
 
-if [ -z "$INPUT_REMOTE_DOCKER_PORT" ]; then
-  INPUT_REMOTE_DOCKER_PORT=22
-fi
+INPUT_REMOTE_DOCKER_PORT="${INPUT_REMOTE_DOCKER_PORT:=22}"
 
 mkdir -p ~/.ssh
 
@@ -40,7 +38,7 @@ DOCKER_COMMAND="docker --host=ssh://ec2-user@$INPUT_REMOTE_DOCKER_HOST:$INPUT_RE
 
 ${DOCKER_COMMAND} pull ${INPUT_DOCKER_IMAGE}
 
-if [ ! -z "$INPUT_LOCAL_TAG" ]; then
+if [ ! -z "${INPUT_LOCAL_TAG-}" ]; then
   echo Tagging remote image $INPUT_DOCKER_IMAGE locally as $INPUT_LOCAL_TAG
   ${DOCKER_COMMAND} tag ${INPUT_DOCKER_IMAGE} ${INPUT_LOCAL_TAG}
 fi
