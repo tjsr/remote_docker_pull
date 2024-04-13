@@ -31,14 +31,13 @@ chmod 600 ~/.ssh/id_rsa
 ssh-keyscan -p $INPUT_REMOTE_DOCKER_PORT "$INPUT_REMOTE_DOCKER_HOST" >>~/.ssh/known_hosts
 ssh-keyscan -p $INPUT_REMOTE_DOCKER_PORT "$INPUT_REMOTE_DOCKER_HOST" >>/etc/ssh/ssh_known_hosts
 
-eval $(ssh-agent) > /dev/null
-ssh-add ~/.ssh/id_rsa > /dev/null
+eval $(ssh-agent) >/dev/null
+ssh-add ~/.ssh/id_rsa >/dev/null
 
 DOCKER_COMMAND="docker --host=ssh://ec2-user@$INPUT_REMOTE_DOCKER_HOST:$INPUT_REMOTE_DOCKER_PORT"
 
 ${DOCKER_COMMAND} pull ${INPUT_DOCKER_IMAGE}
 
 if [ ! -z "${INPUT_LOCAL_TAG-}" ]; then
-  echo Tagging remote image $INPUT_DOCKER_IMAGE locally as $INPUT_LOCAL_TAG
   ${DOCKER_COMMAND} tag ${INPUT_DOCKER_IMAGE} ${INPUT_LOCAL_TAG}
 fi
