@@ -1,0 +1,27 @@
+name: Remote Docker Pull
+author: Tim Rowe <tim@tjsr.id.au>
+description: Pull a docker image to a remote docker daemon connected via SSH
+inputs:
+  remote_docker_host:
+    description: The hostname or IP address of the remote docker host
+    required: true
+  ssh_private_key:
+    description: The private key configured on the remote host to allow SSH access
+    required: true
+  ssh_username:
+    description: The username to use when connecting to the remote host
+    required: true
+  ssh_port:
+    description: The port to use when connecting to the remote host
+    required: false
+    default: 22
+  docker_image:
+    description: The docker image to pull to the remote daemon
+    required: true
+  local_tag:
+    description: The tag to apply to the image on the remote daemon after pulling from the registry
+    required: false
+
+runs:
+  using: docker
+  image: ghcr: tjsr/remote_docker_pull:latest
