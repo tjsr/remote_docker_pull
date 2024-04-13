@@ -36,6 +36,7 @@ ssh-add ~/.ssh/id_rsa
 
 DOCKER_COMMAND="docker --host=ssh://ec2-user@$INPUT_REMOTE_DOCKER_HOST:$INPUT_REMOTE_DOCKER_PORT"
 
+echo "${DOCKER_COMMAND} pull ${INPUT_DOCKER_IMAGE}"
 ${DOCKER_COMMAND} pull ${INPUT_DOCKER_IMAGE}
 
 if [ ! -z "${INPUT_LOCAL_TAG-}" ]; then
