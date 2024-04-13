@@ -31,7 +31,7 @@ chmod 600 ~/.ssh/id_rsa
 ssh-keyscan -p $INPUT_REMOTE_DOCKER_PORT "$INPUT_REMOTE_DOCKER_HOST" >>~/.ssh/known_hosts
 ssh-keyscan -p $INPUT_REMOTE_DOCKER_PORT "$INPUT_REMOTE_DOCKER_HOST" >>/etc/ssh/ssh_known_hosts
 
-eval $(ssh-agent 2>&1 >/dev/null)
+eval $(ssh-agent) 2>&1 >/dev/null
 ssh-add ~/.ssh/id_rsa 2>&1 >/dev/null
 
 DOCKER_COMMAND="docker --host=ssh://ec2-user@$INPUT_REMOTE_DOCKER_HOST:$INPUT_REMOTE_DOCKER_PORT"
