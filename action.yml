@@ -8,7 +8,7 @@ inputs:
   ssh_private_key:
     description: The private key configured on the remote host to allow SSH access
     required: true
-  ssh_username:
+  remote_docker_user:
     description: The username to use when connecting to the remote host
     required: true
   ssh_port:
