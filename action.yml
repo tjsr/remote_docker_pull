@@ -24,4 +24,4 @@ inputs:
 
 runs:
   using: docker
-  image: ghcr.io/tjsr/remote_docker_pull:latest
+  image: docker://ghcr.io/tjsr/remote_docker_pull:latest
