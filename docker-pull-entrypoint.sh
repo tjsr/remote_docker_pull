@@ -28,8 +28,8 @@ mkdir -p ~/.ssh
 echo "$INPUT_SSH_PRIVATE_KEY" >~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa
 
-ssh-keyscan -p $INPUT_REMOTE_DOCKER_PORT "$INPUT_REMOTE_DOCKER_HOST" >>~/.ssh/known_hosts
-ssh-keyscan -p $INPUT_REMOTE_DOCKER_PORT "$INPUT_REMOTE_DOCKER_HOST" >>/etc/ssh/ssh_known_hosts
+ssh-keyscan -p $INPUT_REMOTE_DOCKER_PORT "$INPUT_REMOTE_DOCKER_HOST" >>~/.ssh/known_hosts 2>/dev/null
+ssh-keyscan -p $INPUT_REMOTE_DOCKER_PORT "$INPUT_REMOTE_DOCKER_HOST" >>/etc/ssh/ssh_known_hosts 2>/dev/null
 
 eval $(ssh-agent) 2>&1 >/dev/null
 ssh-add ~/.ssh/id_rsa 2>/dev/null
